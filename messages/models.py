@@ -13,3 +13,18 @@ class Message(models.Model):
     def __str__(self):
         return self.text
 
+worldborders_mapping = {
+    'fips' : 'FIPS',
+    'iso2' : 'ISO2',
+    'iso3' : 'ISO3',
+    'un' : 'UN',
+    'name' : 'NAME',
+    'area' : 'AREA',
+    'pop2005' : 'POP2005',
+    'region' : 'REGION',
+    'subregion' : 'SUBREGION',
+    'lon' : 'LON',
+    'lat' : 'LAT',
+    'geom' : 'MULTIPOLYGON',
+}
+
