@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Nearby Messages</title>
+    </head>
+<body>
+    <h1>Nearby Messages</h1>
+    {% if shops %}
+    <ul>
+    {% for msg in messages %}
+        <li>
+            {{shop.text}}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
