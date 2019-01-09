@@ -8,6 +8,7 @@ class Message(models.Model):
     area = models.IntegerField()
     user_id = models.IntegerField()
     mpoly = models.MultiPolygonField()
+    geometry = models.PointField()
 
     def __str__(self):
         return self.text
