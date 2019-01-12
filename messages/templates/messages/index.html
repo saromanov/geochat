@@ -6,14 +6,12 @@
     </head>
 <body>
     <h1>Nearby Messages</h1>
-    {% if messages %}
     <ul>
-    {% for msg in messages %}
+    {% for msg in object_list %}
         <li>
-            {{shop.text}}
+            {{msg.text}}
         </li>
     {% endfor %}
     </ul>
-    {% endif %}
 </body>
 </html>

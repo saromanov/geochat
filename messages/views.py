@@ -14,14 +14,9 @@ class IndexView(generic.ListView):
     template_name = 'messages/index.html'
     context_object_name = 'near_messages'
     model = Message
+    paginate_by=10
 
     def get_queryset(self):
         """Return nearest messages"""
-        '''print(Message.objects.filter(
-            point__distance_lte=(user_location, Distance(km=10))
-        ))'''
-        messages = Message.objects.annotate(distance=Distance('geometry', user_location)).filter(distance__lt=500)
-        for m in messages:
-            print(m.geometry, m.distance)
-        return Message.objects.annotate(distance=Distance('geometry', user_location)).order_by('distance')[0:5]
+        return Message.objects.annotate(distance=Distance('geometry', user_location)).filter(distance__lt=500)
 
