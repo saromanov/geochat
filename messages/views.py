@@ -1,13 +1,15 @@
+from decimal import Decimal
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from django.contrib.gis.geos import Point
-from django.contrib.gis.db.models.functions import Distance
+from django.contrib.gis.measure import Distance
+from django.contrib.gis.geos import GEOSGeometry 
 
 from .models import Message
-longitude = -18.0048
-latitude = -53.124389
-user_location = Point(longitude, latitude, srid=4326)
+longitude = Decimal(-18.0048)
+latitude = Decimal(-53.124389)
+user_location = GEOSGeometry("POINT({0} {1})".format(longitude, latitude))
 
 class IndexView(generic.ListView):
     template_name = 'messages/index.html'
@@ -15,6 +17,9 @@ class IndexView(generic.ListView):
     model = Message
 
     def get_queryset(self):
-        """Return the last five published questions."""
+        """Return nearest messages"""
+        print(Message.objects.filter(
+            point__distance_lte=(user_location, Distance(km=10))
+        ))
         return Message.objects.annotate(distance=Distance('geometry', user_location)).order_by('distance')[0:5]
 
