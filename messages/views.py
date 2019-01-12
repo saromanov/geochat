@@ -18,5 +18,6 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return nearest messages"""
-        return Message.objects.annotate(distance=Distance('geometry', user_location)).filter(distance__lt=500)
+        distance_m = self.request.GET.get('d')
+        return Message.objects.annotate(distance=Distance('geometry', user_location)).filter(distance__lt=distance_m)
 
