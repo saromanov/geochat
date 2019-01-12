@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
         '''print(Message.objects.filter(
             point__distance_lte=(user_location, Distance(km=10))
         ))'''
-        messages = Message.objects.annotate(distance=Distance('geometry', user_location))
+        messages = Message.objects.annotate(distance=Distance('geometry', user_location)).filter(distance__lt=500)
         for m in messages:
             print(m.geometry, m.distance)
         return Message.objects.annotate(distance=Distance('geometry', user_location)).order_by('distance')[0:5]
