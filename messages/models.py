@@ -4,9 +4,6 @@ from django.utils import timezone
 class Message(models.Model):
     text = models.TextField(max_length=1000)
     pub_date = models.DateTimeField('date published', default=timezone.now())
-    lon = models.FloatField()
-    lat = models.FloatField()
-    area = models.IntegerField()
     user_id = models.IntegerField()
     mpoly = models.MultiPolygonField()
     geometry = models.PointField()

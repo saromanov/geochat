@@ -17,7 +17,9 @@ class IndexView(generic.ListView):
     paginate_by=10
 
     def get_queryset(self):
-        """Return nearest messages"""
+        """Return nearest messages
+        http://127.0.0.1:8000/messages?d=200&lat=-18.004&lon=-53.124
+        """
         distance_m = self.request.GET.get('d')
         lat = self.request.GET.get('lat')
         lon = self.request.GET.get('lon')
