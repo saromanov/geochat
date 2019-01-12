@@ -1,8 +1,9 @@
 from django.contrib.gis.db import models
+from django.utils import timezone
 
 class Message(models.Model):
     text = models.TextField(max_length=1000)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', default=timezone.now())
     lon = models.FloatField()
     lat = models.FloatField()
     area = models.IntegerField()
