@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%=0d&@&zu^qn=-pw%qu$x-@9+-ah2@jpncd%18m!7$xyafst--'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -80,9 +86,9 @@ WSGI_APPLICATION = 'geochat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.getenv('GEOCHAT_NAME'),
-        'USER': os.getenv('GEOCHAT_USER_DB'),
-        'PASSWORD': os.getenv('GEOCHAT_USER_PASS'),
+        'NAME': env('GEOCHAT_NAME'),
+        'USER': env('GEOCHAT_USER_DB'),
+        'PASSWORD': env('GEOCHAT_USER_PASS'),
         'HOST': 'localhost',
         'PORT': '',
     }
