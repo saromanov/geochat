@@ -1,16 +1,14 @@
 from django.contrib.gis.db import models
 from django.utils import timezone
+from django_cryptography.fields import encrypt
 
 class Message(models.Model):
     id = models.AutoField(primary_key=True)
-    text = models.TextField(max_length=1000)
+    text = encrypt(models.TextField(max_length=1000))
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     user_id = models.IntegerField()
     #mpoly = models.MultiPolygonField()
     geometry = models.PointField()
-
-    def __str__(self):
-        return self.text
 
 worldborders_mapping = {
     'fips' : 'FIPS',
