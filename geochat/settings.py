@@ -33,6 +33,26 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
+LOGGING = {
+  'handlers': {
+        'logstash': {
+            'level': 'ERROR',
+            'class': 'logstash.TCPLogstashHandler',
+            'host': 'localhost',
+            'port': 5959,
+            'version': 1,
+            'message_type': 'django',
+            'fqdn': False,
+            'tags': ['django.request'],
+        },
+  },
+  'loggers': {
+        'django.request': {
+            'handlers': ['logstash'],
+            'level': 'ERROR',
+            'propagate': True,
+  },
+}
 
 # Application definition
 
