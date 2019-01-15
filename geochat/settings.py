@@ -34,6 +34,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
 
 LOGGING = {
+  'version':1,
   'handlers': {
         'logstash': {
             'level': 'ERROR',
@@ -52,6 +53,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
   },
+}
 }
 
 # Application definition
