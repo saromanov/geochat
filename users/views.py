@@ -6,10 +6,5 @@ from django.views.generic.detail import DetailView
 from .models import Person
 
 class PersonDetailView(DetailView):
-
+    template_name = 'users/user.html'
     model = Person
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context

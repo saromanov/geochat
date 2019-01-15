@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     url(r'^messages$', include('messages.urls')),
+    url(r'^users/(?P<pk>\d+)$', include('users.urls')),
 ]
