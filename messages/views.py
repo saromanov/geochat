@@ -23,7 +23,6 @@ class IndexView(generic.ListView):
         distance_m = self.request.GET.get('d')
         lat = self.request.GET.get('lat')
         lon = self.request.GET.get('lon')
-        print(lon, lat)
         return Message.objects.annotate(distance=Distance('geometry', make_point(lon, lat))).filter(distance__lt=distance_m)
 
 
