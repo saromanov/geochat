@@ -23,4 +23,5 @@ urlpatterns = [
     path('users/', include('users.urls')),
     url(r'^messages$', include('messages.urls')),
     url(r'^users/(?P<pk>\d+)$', include('users.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls'))
 ]
